@@ -1,0 +1,9 @@
+{
+    "name": "openapi-to-locust",
+    "version": "0.0.1",
+    "private": true,
+    "license": "MIT",
+    "devDependencies": {
+        "@openapitools/openapi-generator-cli": "^2.5.2"
+    }
+}

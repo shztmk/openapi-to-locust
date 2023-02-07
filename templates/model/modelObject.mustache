@@ -1,0 +1,27 @@
+from typing import List, Optional
+
+from datetime import date, datetime
+from jsons import JsonSerializable
+from util.datetime import dateutil_parser
+{{#vars}}{{#complexType}}from model.{{#lambda.snakecase}}{{complexType}}{{/lambda.snakecase}} import {{complexType}}
+{{/complexType}}{{/vars}}
+
+class {{classname}}(JsonSerializable):
+    def __init__(
+            self,
+            *,
+{{#requiredVars}}
+            {{name}}: {{#isArray}}List[{{/isArray}}{{#complexType}}{{complexType}}{{/complexType}}{{^complexType}}{{#isArray}}{{items.dataType}}{{/isArray}}{{^isArray}}{{baseType}}{{/isArray}}{{/complexType}}{{#isArray}}]{{/isArray}},
+{{/requiredVars}}
+{{#optionalVars}}
+            {{name}}: Optional[{{#isArray}}List[{{/isArray}}{{#complexType}}{{complexType}}{{/complexType}}{{^complexType}}{{#isArray}}{{items.dataType}}{{/isArray}}{{^isArray}}{{baseType}}{{/isArray}}{{/complexType}}{{#isArray}}]{{/isArray}}] = None,
+{{/optionalVars}}
+    ):
+{{#requiredVars}}
+            self.{{name}} = {{name}}
+{{/requiredVars}}
+{{#optionalVars}}
+            if {{name}} is not None:
+                self.{{name}} = {{name}}
+{{/optionalVars}}
+

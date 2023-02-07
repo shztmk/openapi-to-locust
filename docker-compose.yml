@@ -1,0 +1,17 @@
+version: '3'
+services:
+  python3:
+    build: './docker/python'
+    volumes:
+      - ./:/root/src
+  node:
+    build: './docker/node'
+    environment:
+      PATH_TO_INPUT_SPEC: ${PATH_TO_INPUT_SPEC}
+    volumes:
+      - ./:/root/src
+      - ./${PATH_TO_INPUT_SPEC}:/root/api/openapi.yaml
+  locust:
+    build: './docker/locust'
+    volumes:
+      - ./:/mnt/locust

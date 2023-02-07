@@ -1,0 +1,28 @@
+from model import *
+from util.dynamic_factory import DynamicFactory
+from util.request_header_singleton import HeaderArgs, RequestHeaderSingleton
+from util.http_client import HttpSession
+
+{{#operations}}
+class {{classname}}:
+    def __init__(self, session: HttpSession):
+        self.client = session
+{{#operation}}
+
+    def {{operationId}}(
+        self,{{#bodyParam.dataType.length}}
+        req: {{bodyParam.dataType}},{{/bodyParam.dataType.length}}
+        headers: HeaderArgs = None,
+        **kwargs,
+    ) -> {{returnType}}:
+        res, ctx = self.client.request(
+            method="{{httpMethod}}",
+            url="{{path}}",{{#bodyParam.dataType.length}}
+            data=req,{{/bodyParam.dataType.length}}
+            headers=RequestHeaderSingleton().get(**(headers or {})),
+            **kwargs,
+        )
+        res.raise_for_status()
+        return DynamicFactory[{{returnType}}]().create(ctx)
+{{/operation}}
+{{/operations}}

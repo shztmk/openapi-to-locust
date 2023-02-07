@@ -1,0 +1,4 @@
+isort ~= 5.11
+autoflake ~= 2.0
+black ~= 22.12
+mkinit ~= 1.0.0

@@ -1,0 +1,11 @@
+{{#pattern}}from util.assertions import assert_str_matches{{/pattern}}
+{{#maxLength}}from util.assertions import assert_str_max_length{{/maxLength}}
+{{#minLength}}from util.assertions import assert_str_min_length{{/minLength}}
+
+class {{{classname}}}(
+{{^hasValidation}}    str{{/hasValidation}}
+{{#pattern}}    assert_str_matches('{{pattern}}'),{{/pattern}}
+{{#maxLength}}    assert_str_max_length({{maxLength}}),{{/maxLength}}
+{{#minLength}}    assert_str_min_length({{minLength}}),{{/minLength}}
+):
+    pass

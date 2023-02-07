@@ -1,0 +1,9 @@
+{{#maximum}}from util.assertions import assert_int_maximum{{/maximum}}
+{{#minimum}}from util.assertions import assert_int_minimum{{/minimum}}
+
+class {{{classname}}}(
+{{^hasValidation}}    int{{/hasValidation}}
+{{#maximum}}    assert_int_maximum({{maximum}}{{#exclusiveMaximum}}, True{{/exclusiveMaximum}}),{{/maximum}}
+{{#minimum}}    assert_int_minimum({{minimum}}{{#exclusiveMinimum}}, True{{/exclusiveMinimum}}),{{/minimum}}
+):
+    pass

@@ -1,0 +1,10 @@
+from enum import Enum
+
+
+class {{classname}}(str, Enum):
+    def __str__(self):
+        return self.value
+
+{{#allowableValues.enumVars}}
+    {{name}} = {{&value}}
+{{/allowableValues.enumVars}}

@@ -1,0 +1,6 @@
+{{#models}}{{#model}}from model import *
+from util.datetime import dateutil_parser
+
+example_{{classVarName}} = {{classname}}({{#vars}}
+    {{name}}={{{example}}},{{/vars}}
+){{/model}}{{/models}}

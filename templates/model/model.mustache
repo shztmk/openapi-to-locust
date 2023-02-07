@@ -1,0 +1,7 @@
+{{#models}}
+{{#model}}
+{{#isEnum}}{{>modelEnum}}{{/isEnum}}
+{{#isString}}{{^isEnum}}{{>modelString}}{{/isEnum}}{{/isString}}
+{{#isNumeric}}{{>modelInteger}}{{/isNumeric}}
+{{#isArray}}{{>modelArray}}{{/isArray}}
+{{^isString}}{{^isInteger}}{{^isNumeric}}{{^isArray}}{{>modelObject}}{{/isArray}}{{/isNumeric}}{{/isInteger}}{{/isString}}{{/model}}{{/models}}
